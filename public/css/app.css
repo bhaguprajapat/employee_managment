@@ -1,0 +1,225 @@
+:root {
+    --brand: #4f46e5;
+    --brand-soft: #eef2ff;
+    --sidebar-width: 240px;
+    --surface: #ffffff;
+    --page-bg: #f4f6fb;
+    --text-muted: #6b7280;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    background: var(--page-bg);
+    color: #1f2937;
+    font-size: 0.95rem;
+}
+
+/* ---------- Layout shell ---------- */
+.app-shell {
+    min-height: 100vh;
+}
+
+.app-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: var(--sidebar-width);
+    background: #111827;
+    color: #e5e7eb;
+    padding: 1.25rem 0.75rem;
+    z-index: 1040;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+}
+
+.app-sidebar.is-open {
+    transform: translateX(0);
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0 0.5rem 1.25rem;
+    font-weight: 600;
+}
+
+.brand-mark {
+    display: inline-grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    background: var(--brand);
+    color: #fff;
+    font-size: 0.8rem;
+}
+
+.sidebar-nav .nav-link {
+    color: #cbd5e1;
+    border-radius: 0.5rem;
+    padding: 0.55rem 0.75rem;
+    margin-bottom: 0.2rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-nav .nav-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+}
+
+.sidebar-nav .nav-link.active {
+    background: var(--brand);
+    color: #fff;
+}
+
+.app-main {
+    min-width: 0;
+}
+
+.app-topbar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--surface);
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0.75rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
+
+.topbar-title {
+    font-weight: 600;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.app-content {
+    padding: 1.25rem 1rem 2rem;
+    animation: fadeIn 0.35s ease both;
+}
+
+@media (min-width: 992px) {
+    .app-sidebar {
+        transform: none;
+    }
+    .app-main {
+        margin-left: var(--sidebar-width);
+    }
+    .app-content {
+        padding: 1.5rem 2rem 2.5rem;
+    }
+}
+
+/* ---------- Cards, tables, badges ---------- */
+.stat-card {
+    background: var(--surface);
+    border: 1px solid #e5e7eb;
+    border-radius: 0.875rem;
+    padding: 1.25rem;
+    height: 100%;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(17, 24, 39, 0.08);
+}
+
+.stat-label {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.panel {
+    background: var(--surface);
+    border: 1px solid #e5e7eb;
+    border-radius: 0.875rem;
+    padding: 1.25rem;
+}
+
+.panel-title {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.table-responsive {
+    border-radius: 0.5rem;
+}
+
+.table tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.table tbody tr:hover {
+    background-color: var(--brand-soft);
+}
+
+.table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.badge-status-active { background: #dcfce7; color: #166534; }
+.badge-status-inactive { background: #fee2e2; color: #991b1b; }
+
+.btn {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.2);
+}
+
+.auth-page {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 1.25rem;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+    background: var(--surface);
+    border-radius: 1rem;
+    padding: 2rem 1.75rem;
+    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+    animation: fadeIn 0.4s ease both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .stat-value { font-size: 1.4rem; }
+    .panel { padding: 1rem; }
+}
